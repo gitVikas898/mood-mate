@@ -15,3 +15,4 @@
     - DateDisplay
     - MoodSelector
     - Note Input
+    - Calendar View Built

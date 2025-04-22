@@ -5,29 +5,38 @@ import DateDisplay from './components/DateDisplay'
 import MoodSelector from './components/MoodSelector'
 import NoteInput from './components/NoteInput';
 import CalendarView from './components/CalendarView';
+import WeatherDisplay from './components/WeatherDisplay';
 
 
 function App() {
   const [mood,setMood] = useState("");
   const [note, setNote] = useState("");
+  const [weather, setWeather] = useState(null);
   const handleSave =()=>{
-    if(!mood || !note){
+    if(!mood || !note ||!weather){
       alert("Please select a mood and note");
       return;
     }
 
-    const today = new Date().toISOString().split("T")[0];
-    const newEntery = {date:today,mood,note};
-    const existing = JSON.parse(localStorage.getItem("moodEntries"))||[];
-    const updated = [...existing,newEntery];
+    const entry = {
+      date: new Date().toISOString().split("T")[0],
+      mood,
+      note,
+      weather,
+    };
 
-    localStorage.setItem("moodEntries",JSON.stringify(updated));
-    alert("Entery Saved");
+    const stored = JSON.parse(localStorage.getItem("moodEntries")) || [];
+    localStorage.setItem("moodEntries", JSON.stringify([...stored, entry]));
+
+    setMood("");
+    setNote("");
+    alert("Entry saved!");
   }
   return (
    <div>
         <h1>Mood Mate</h1>
         <DateDisplay/>
+        <WeatherDisplay onWeatherFetched={setWeather} />
         <MoodSelector setMood={setMood}/>
         <p>Selected Mood:{mood}</p>
         <NoteInput onNoteChange={setNote}/>
