@@ -12,16 +12,35 @@ const History = () => {
   }, []);
 
   if (!entries.length) {
-    return <p className="text-center mt-8 text-gray-500">No entries yet.</p>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+      <div className="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full text-center">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">No Entries Yet</h2>
+        <p className="text-gray-500 text-base mb-6">
+          Looks like there’s nothing here at the moment. Why not head back and add something?
+        </p>
+        <Link
+          to="/"
+          className="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition duration-300 text-lg font-medium"
+        >
+          ← Back to Home
+        </Link>
+      </div>
+    </div>
+    );
   }
 
   const filteredEntries = entries.filter((entry) => {
     const isMoodSelected = selectedMood !== "";
     const isWeatherSelected = selectedWeather !== "";
-  
+
     const moodMatches = !isMoodSelected || entry.mood === selectedMood;
-    const weatherMatches = !isWeatherSelected || entry.weather?.description?.toLowerCase().includes(selectedWeather.toLowerCase());
-  
+    const weatherMatches =
+      !isWeatherSelected ||
+      entry.weather?.description
+        ?.toLowerCase()
+        .includes(selectedWeather.toLowerCase());
+
     return moodMatches && weatherMatches;
   });
 
@@ -52,7 +71,7 @@ const History = () => {
           ← Back to Home
         </Link>
       </header>
-  
+
       {/* Filter Section */}
       <div className="flex flex-col md:flex-row items-center gap-4 justify-center mb-8">
         <select
@@ -67,7 +86,7 @@ const History = () => {
           <option value="angry">Angry</option>
           <option value="excited">Excited</option>
         </select>
-  
+
         <select
           value={selectedWeather}
           onChange={(e) => setSelectedWeather(e.target.value)}
@@ -80,7 +99,7 @@ const History = () => {
           <option value="thunderstorm">Thunderstorm</option>
           <option value="snow">Snow</option>
         </select>
-  
+
         <button
           onClick={() => {
             setSelectedMood("");
@@ -91,12 +110,12 @@ const History = () => {
           Clear Filters
         </button>
       </div>
-  
+
       <div className="p-4 max-w-4xl mx-auto">
         <h1 className="text-3xl font-semibold mb-8 text-center text-indigo-800">
           Mood Journal History
         </h1>
-  
+
         <div className="grid gap-6">
           {filteredEntries.map((entry, index) => (
             <div
@@ -107,12 +126,12 @@ const History = () => {
                 <span>{entry.date}</span>
                 <span>{entry.weather?.temp} °C</span>
               </div>
-  
+
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
                 <span className="text-5xl">{renderMoodEmoji(entry.mood)}</span>
                 <p className="text-gray-800 text-base">{entry.note}</p>
               </div>
-  
+
               {entry.weather?.icon && (
                 <div className="flex items-center justify-end gap-2">
                   <img
@@ -128,7 +147,7 @@ const History = () => {
             </div>
           ))}
         </div>
-  
+
         <div className="mt-12">
           <MoodTrend />
         </div>
