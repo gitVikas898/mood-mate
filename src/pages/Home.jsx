@@ -4,12 +4,14 @@ import DateDisplay from "../components/DateDisplay";
 import MoodSelector from "../components/MoodSelector";
 import NoteInput from "../components/NoteInput";
 import CalendarView from "../components/CalendarView";
+import Popup from "../components/Popup";
 
 function Home() {
   const [mood, setMood] = useState("");
   const [note, setNote] = useState("");
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState({});
+  const [showPopup,setShowPopup] = useState(false);
 
   const handleSave = () => {
     const errorMessage = {};
@@ -37,6 +39,11 @@ function Home() {
     setMood("");
     setNote("");
     setError({});
+    setShowPopup(true);
+
+    setTimeout(()=>{
+      setShowPopup(false);
+    },2500)
   };
 
   return (
@@ -60,6 +67,9 @@ function Home() {
           </div>
         </div>
       </div>
+      {
+        showPopup && (<Popup/>)
+      }
     </>
   );
 }
