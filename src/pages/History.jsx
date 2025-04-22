@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import MoodTrend from "../components/MoodTrends";
 
 const History = () => {
   const [entries, setEntries] = useState([]);
@@ -46,18 +47,18 @@ const History = () => {
       <header className="mb-6 text-center">
         <Link
           to="/"
-          className="text-indigo-600 hover:text-indigo-800 underline text-lg"
+          className="text-indigo-600 hover:text-indigo-800 underline text-lg font-medium"
         >
           ← Back to Home
         </Link>
       </header>
-
+  
       {/* Filter Section */}
-      <div className="flex flex-col md:flex-row gap-4 justify-center mb-6">
+      <div className="flex flex-col md:flex-row items-center gap-4 justify-center mb-8">
         <select
           value={selectedMood}
           onChange={(e) => setSelectedMood(e.target.value)}
-          className="border p-2 rounded-md shadow-sm"
+          className="border p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
         >
           <option value="">All Moods</option>
           <option value="happy">Happy</option>
@@ -66,11 +67,11 @@ const History = () => {
           <option value="angry">Angry</option>
           <option value="excited">Excited</option>
         </select>
-
+  
         <select
           value={selectedWeather}
           onChange={(e) => setSelectedWeather(e.target.value)}
-          className="border p-2 rounded-md shadow-sm"
+          className="border p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
         >
           <option value="">All Weather</option>
           <option value="clear">Clear</option>
@@ -79,56 +80,58 @@ const History = () => {
           <option value="thunderstorm">Thunderstorm</option>
           <option value="snow">Snow</option>
         </select>
-
+  
         <button
           onClick={() => {
             setSelectedMood("");
             setSelectedWeather("");
           }}
-          className="text-sm bg-indigo-500 rounded-md text-white p-2"
+          className="text-sm bg-indigo-500 rounded-md text-white px-4 py-2 hover:bg-indigo-600 transition-all"
         >
           Clear Filters
         </button>
       </div>
-
-   
-      
-   
-
-      <div className="p-4 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-semibold mb-6 text-center text-indigo-800">
+  
+      <div className="p-4 max-w-4xl mx-auto">
+        <h1 className="text-3xl font-semibold mb-8 text-center text-indigo-800">
           Mood Journal History
         </h1>
-
-        {filteredEntries.map((entry, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-md p-6 mb-6 border-l-4 border-indigo-300 transition-all hover:shadow-lg"
-          >
-            <div className="flex justify-between text-sm text-gray-500 mb-2">
-              <span>{entry.date}</span>
-              <span>{entry.weather?.temp} °C</span>
-            </div>
-
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-6xl">{renderMoodEmoji(entry.mood)}</span>
-              <p className="text-gray-800 text-lg">{entry.note}</p>
-            </div>
-
-            {entry.weather?.icon && (
-              <div className="flex items-center justify-end gap-2">
-                <img
-                  src={entry.weather.icon}
-                  alt="weather"
-                  className="w-10 h-10"
-                />
-                <span className="text-gray-600 text-sm italic">
-                  {entry.weather.description}
-                </span>
+  
+        <div className="grid gap-6">
+          {filteredEntries.map((entry, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-md p-6 border-l-4 border-indigo-400 transition-all hover:shadow-lg"
+            >
+              <div className="flex justify-between text-sm text-gray-500 mb-2">
+                <span>{entry.date}</span>
+                <span>{entry.weather?.temp} °C</span>
               </div>
-            )}
-          </div>
-        ))}
+  
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+                <span className="text-5xl">{renderMoodEmoji(entry.mood)}</span>
+                <p className="text-gray-800 text-base">{entry.note}</p>
+              </div>
+  
+              {entry.weather?.icon && (
+                <div className="flex items-center justify-end gap-2">
+                  <img
+                    src={entry.weather.icon}
+                    alt="weather"
+                    className="w-10 h-10"
+                  />
+                  <span className="text-gray-600 text-sm italic">
+                    {entry.weather.description}
+                  </span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+  
+        <div className="mt-12">
+          <MoodTrend />
+        </div>
       </div>
     </div>
   );
