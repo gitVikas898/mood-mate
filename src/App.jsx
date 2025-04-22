@@ -4,6 +4,7 @@ import './App.css'
 import DateDisplay from './components/DateDisplay'
 import MoodSelector from './components/MoodSelector'
 import NoteInput from './components/NoteInput';
+import CalendarView from './components/CalendarView';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <button onClick={handleSave} className="mt-6 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
             Save
         </button>
+        <CalendarView/>
    </div>
   )
 }
