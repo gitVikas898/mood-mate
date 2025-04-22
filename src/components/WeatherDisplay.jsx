@@ -3,7 +3,7 @@ const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
 const fetchWeather = async (lat, lon) => {
     
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric`
     const res = await fetch(url);
     const data = await res.json();
   
