@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const History = () => {
   const [entries, setEntries] = useState([]);
-
+  const [selectedMood, setSelectedMood] = useState("");
+  const [selectedWeather, setSelectedWeather] = useState("");
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('moodEntries')) || [];
+    const stored = JSON.parse(localStorage.getItem("moodEntries")) || [];
     setEntries(stored.reverse());
   }, []);
 
@@ -13,20 +14,30 @@ const History = () => {
     return <p className="text-center mt-8 text-gray-500">No entries yet.</p>;
   }
 
+  const filteredEntries = entries.filter((entry) => {
+    const moodMatch = selectedMood ? entry.mood === selectedMood : true;
+    const weatherMatch = selectedWeather
+      ? entry.weather?.description
+          ?.toLowerCase()
+          .includes(selectedWeather.toLowerCase())
+      : true;
+    return moodMatch && weatherMatch;
+  });
+
   const renderMoodEmoji = (mood) => {
     switch (mood) {
-      case 'happy':
-        return '😀';
-      case 'sad':
-        return '😢';
-      case 'neutral':
-        return '😐';
-      case 'angry':
-        return '😠';
-      case 'excited':
-        return '🤩';
+      case "happy":
+        return "😀";
+      case "sad":
+        return "😢";
+      case "neutral":
+        return "😐";
+      case "angry":
+        return "😠";
+      case "excited":
+        return "🤩";
       default:
-        return '🙂';
+        return "🙂";
     }
   };
 
@@ -41,12 +52,55 @@ const History = () => {
         </Link>
       </header>
 
+      {/* Filter Section */}
+      <div className="flex flex-col md:flex-row gap-4 justify-center mb-6">
+        <select
+          value={selectedMood}
+          onChange={(e) => setSelectedMood(e.target.value)}
+          className="border p-2 rounded-md shadow-sm"
+        >
+          <option value="">All Moods</option>
+          <option value="happy">Happy</option>
+          <option value="sad">Sad</option>
+          <option value="neutral">Neutral</option>
+          <option value="angry">Angry</option>
+          <option value="excited">Excited</option>
+        </select>
+
+        <select
+          value={selectedWeather}
+          onChange={(e) => setSelectedWeather(e.target.value)}
+          className="border p-2 rounded-md shadow-sm"
+        >
+          <option value="">All Weather</option>
+          <option value="clear">Clear</option>
+          <option value="clouds">Cloudy</option>
+          <option value="rain">Rain</option>
+          <option value="thunderstorm">Thunderstorm</option>
+          <option value="snow">Snow</option>
+        </select>
+
+        <button
+          onClick={() => {
+            setSelectedMood("");
+            setSelectedWeather("");
+          }}
+          className="text-sm bg-indigo-500 rounded-md text-white p-2"
+        >
+          Clear Filters
+        </button>
+      </div>
+
+   
+      
+   
+
       <div className="p-4 max-w-3xl mx-auto">
         <h1 className="text-3xl font-semibold mb-6 text-center text-indigo-800">
           Mood Journal History
         </h1>
 
-        {entries.map((entry, index) => (
+        {filteredEntries.map((entry, index) => (
           <div
             key={index}
             className="bg-white rounded-xl shadow-md p-6 mb-6 border-l-4 border-indigo-300 transition-all hover:shadow-lg"
