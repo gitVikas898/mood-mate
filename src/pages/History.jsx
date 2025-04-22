@@ -40,23 +40,16 @@ const History = () => {
         <div
           key={index}
           className="bg-white shadow rounded p-4 mb-4 border-l-4 grid gap-2"
-          style={{
-            borderColor:
-              entry.mood === "😊" ? "#34d399" :
-              entry.mood === "😐" ? "#fbbf24" :
-              entry.mood === "😢" ? "#60a5fa" :
-              entry.mood === "😠" ? "#f87171" :
-              "#9ca3af"
-          }}
+         
         >
           <div className="flex justify-between text-sm text-gray-500 mb-2">
             <span>{entry.date}</span>
-            <span>{entry.weather?.temp} °C  </span>
+            <span>{entry.weather?.temp} °C </span>
           </div>
 
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-3xl">{renderMoodEmoji(entry.mood)}</span>
-            <p className="text-gray-700">{entry.note}</p>
+            <span className="text-7xl">{renderMoodEmoji(entry.mood)}</span>
+            <p className="text-gray-700 text-2xl">{entry.note}</p>
           </div>
 
           {entry.weather?.icon && (
