@@ -18,3 +18,28 @@
     - Calendar View Built
     - Built History Page
     - Filter Records based on mood / weather
+    - React Charts for tracking mood trends
+
+## ✨ Features
+
+- Select your mood with emojis
+- Add a personal note
+- Automatically records date, weather, and location
+- View past entries on a calendar
+- Browse all history with mood + weather filters
+- Smooth UI animations and transitions
+
+## 🛠️ Tech Stack
+
+- **React.js** – UI library
+- **Vite** – Fast build tool
+- **Tailwind CSS** – Utility-first styling
+- **React Router** – Client-side routing
+- **LocalStorage** – For saving mood entries
+- **OpenWeatherMap API** – Real-time weather data
+- **Geolocation API** – To fetch user's location
+
+## 🙋‍♂️ Author
+
+- **Vikas** – Frontend Developer in the making 💻  
+- [LinkedIn](https://www.linkedin.com/in/vikas-kumar-singh-204742332/) | [GitHub](https://github.com/gitVikas898)
