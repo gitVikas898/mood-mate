@@ -15,13 +15,13 @@ const History = () => {
   }
 
   const filteredEntries = entries.filter((entry) => {
-    const moodMatch = selectedMood ? entry.mood === selectedMood : true;
-    const weatherMatch = selectedWeather
-      ? entry.weather?.description
-          ?.toLowerCase()
-          .includes(selectedWeather.toLowerCase())
-      : true;
-    return moodMatch && weatherMatch;
+    const isMoodSelected = selectedMood !== "";
+    const isWeatherSelected = selectedWeather !== "";
+  
+    const moodMatches = !isMoodSelected || entry.mood === selectedMood;
+    const weatherMatches = !isWeatherSelected || entry.weather?.description?.toLowerCase().includes(selectedWeather.toLowerCase());
+  
+    return moodMatches && weatherMatches;
   });
 
   const renderMoodEmoji = (mood) => {
