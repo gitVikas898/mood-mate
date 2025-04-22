@@ -28,7 +28,10 @@ const MoodTrend = () => {
   }, []);
 
   return (
-    <div className="w-full h-[300px]">
+    <div className="w-full h-[300px] grid gap-2">
+         <h1 className="text-3xl font-semibold text-center text-indigo-800">
+          Mood Trends
+        </h1>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
           <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
