@@ -17,7 +17,7 @@ const History = () => {
       <div className="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full text-center">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">No Entries Yet</h2>
         <p className="text-gray-500 text-base mb-6">
-          Looks like there’s nothing here at the moment. Why not head back and add something?
+          Looks like there’s nothing here at the moment
         </p>
         <Link
           to="/"
