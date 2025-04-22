@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const NoteInput = ({onNoteChange}) => {
+const NoteInput = ({onNoteChange,error}) => {
     const[note,setNote] = useState("");
     
     const handleChange = (e)=>{
@@ -17,6 +17,7 @@ const NoteInput = ({onNoteChange}) => {
          >
 
          </textarea>
+       { error?.note && <p className='text-red-500 text-sm'>{error?.note}</p>}
     </div>
   )
 }

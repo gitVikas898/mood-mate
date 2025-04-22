@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { moods } from '../constants/constants';
 
-const MoodSelector = ({setMood,mood}) => {
+const MoodSelector = ({setMood,mood ,error}) => {
     const[selectedMood,setSelectedMood] = useState(null);
 
     const handleMoodClick = (mood)=>{
@@ -32,6 +32,7 @@ const MoodSelector = ({setMood,mood}) => {
                 })
             }
         </div>
+       {error?.mood && <p className='text-red-500 text-sm'>{error?.mood}</p>}
     </div>
   )
 }
