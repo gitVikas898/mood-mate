@@ -35,12 +35,23 @@ const WeatherDisplay = ({ onWeatherFetched}) => {
       if (!weather) return <p>Fetching weather...</p>;
   
       return (
-        <div className="flex items-center gap-3 text-lg text-gray-600">
-          <img src={weather.icon} alt="weather" className="w-10 h-10" />
+        <div className="flex flex-wrap items-center justify-center gap-4 text-base sm:text-lg text-gray-600">
+        <div className="flex items-center gap-2">
+          <img src={weather.icon} alt="weather" className="w-8 h-8 sm:w-10 sm:h-10" />
           <span>{weather.description}</span>
-          <span className='flex items-center gap-2'><FaTemperatureHigh fill='orange'/>{weather.temp}°C</span>
-          <span className='flex items-center gap-2'><IoLocation fill='red'/>{weather.location}</span>
         </div>
+      
+        <div className="flex items-center gap-2">
+          <FaTemperatureHigh fill="orange" className="text-xl" />
+          <span>{weather.temp}°C</span>
+        </div>
+      
+        <div className="flex items-center gap-2">
+          <IoLocation fill="red" className="text-xl" />
+          <span>{weather.location}</span>
+        </div>
+      </div>
+      
       );
  };
 

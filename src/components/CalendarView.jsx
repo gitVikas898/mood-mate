@@ -13,7 +13,7 @@ const CalendarView = () => {
 
   const getMoodForDate = (date) => {
     const localDate = new Date(date);
-    localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset()); // Handle timezone offset
+    localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset()); 
     const formatted = localDate.toISOString().split('T')[0];
     const entry = entries.find((e) => e.date === formatted);
     return entry?.mood || null;
