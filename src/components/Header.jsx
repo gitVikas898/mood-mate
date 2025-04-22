@@ -3,6 +3,7 @@ import WeatherDisplay from './WeatherDisplay';
 import { Link } from 'react-router-dom';
 
 const Header = ({ setWeather }) => {
+  
   return (
     <nav className="flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-indigo-100 via-blue-50 to-indigo-100 shadow-md p-4">
       <div>
