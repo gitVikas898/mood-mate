@@ -1,0 +1,25 @@
+.mood-happy {
+    background-color: #d1fae5 ;
+    border-radius: 50% 
+  }
+  
+  .mood-sad {
+    background-color: #fee2e2 ;
+    border-radius: 50% ;
+  }
+  
+  .mood-neutral {
+    background-color: #fef3c7 ;
+    border-radius: 50% ;
+  }
+  
+  .mood-angry {
+    background-color: #fecaca ;
+    border-radius: 50% ;
+  }
+  
+  .mood-excited {
+    background-color: #e0e7ff ;
+    border-radius: 50% ;
+  }
+  
