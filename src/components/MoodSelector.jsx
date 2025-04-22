@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { moods } from '../constants/constants';
 
-const MoodSelector = ({setMood}) => {
+const MoodSelector = ({setMood,mood}) => {
     const[selectedMood,setSelectedMood] = useState(null);
 
     const handleMoodClick = (mood)=>{
@@ -10,8 +10,9 @@ const MoodSelector = ({setMood}) => {
         setMood(mood.label);
     }
   return (
-    <div>
-        <h1>How are you feeling today?</h1>
+    <div className='flex flex-col items-center justify-between gap-2'>
+        <h1 className='text-2xl text-blue-950 font-semibold'>How are you feeling today?</h1>
+        <p className='text-xl text-blue-950 font-semibold'>Selected Mood: {mood.toUpperCase()}</p>
         <div>
             {
                 moods.map((mood)=>{
@@ -19,10 +20,10 @@ const MoodSelector = ({setMood}) => {
                         <button
                             key={mood.label}
                             onClick={()=>handleMoodClick(mood)}
-                            className={`text-4xl p-2 rounded-full transition-transform duration-150 ${
+                            className={`text-4xl p-2 rounded-full mr-4 transition-transform duration-150 text-center ${
                                 selectedMood === mood.label
-                                  ? "bg-blue-200 scale-110"
-                                  : "bg-gray-100 hover:scale-105"
+                                  ? "bg-blue-200 scale-125"
+                                  : "bg-gray-100 hover:scale-125"
                               }`}
                         >
                             {mood.emoji}
