@@ -32,6 +32,8 @@ const WeatherDisplay = ({ onWeatherFetched}) => {
           (err) => console.error("Geolocation error:", err)
         );
       }, [onWeatherFetched]);
+
+      
       if (!weather) return <p>Fetching weather...</p>;
   
       return (

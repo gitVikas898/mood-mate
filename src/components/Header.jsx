@@ -18,7 +18,8 @@ const Header = ({ setWeather }) => {
           View History
         </Link>
       </div>
-
+        
+ 
       <div>
         <WeatherDisplay onWeatherFetched={setWeather} />
       </div>
